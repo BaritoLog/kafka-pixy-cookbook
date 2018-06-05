@@ -13,12 +13,15 @@ default[cookbook_name]['user'] = 'kafka-pixy'
 default[cookbook_name]['group'] = 'kafka-pixy'
 
 # gRpc address, default: localhost:19091
-default[cookbook_name]['grpcAddr'] = ''
+default[cookbook_name]['grpcHost'] = node['ipaddress']
+default[cookbook_name]['grpcPost'] = ''
+default[cookbook_name]['grpcAddr'] = "#{default[cookbook_name]['grpcHost']}:#{default[cookbook_name]['grpcPort']}"
 # tcp address, default: localhost:19092
 default[cookbook_name]['tcpAddr'] = ''
 
 # Kafka cluster options, default: localhost:9092
 default[cookbook_name]['kafka_hosts'] = []
+default[cookbook_name]['kafka_topic'] = ''
 # Zookeeper cluster options, default: localhost:2181
 default[cookbook_name]['zookeeper_hosts'] = []
 default[cookbook_name]['kafka_version'] = '0.11.0.2'
