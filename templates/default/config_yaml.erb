@@ -1,0 +1,15 @@
+proxies:
+  default:
+    kafka:
+      seed_peers:
+        <% @config_vars["kafka_hosts"].each do |host| %>
+        - <%= host %>
+        <% end %>
+      version: <%= @config_vars["kafka_version"] %>
+    zoo_keeper:
+      seed_peers:
+        <% @config_vars["zookeeper_hosts"].each do |host| %>
+            - <%= host %>
+        <% end %>
+consumer:
+  subscription_timeout: <%= @config_vars["consumer_subscription_timeout"] %>
