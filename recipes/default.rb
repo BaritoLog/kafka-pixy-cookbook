@@ -4,6 +4,11 @@
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
+return if node[cookbook_name]['zookeeper_hosts'].empty?
+return if node[cookbook_name]['kafka_hosts'].empty?
+return if node[cookbook_name]['kafka_topic'].empty?
+return if node[cookbook_name]['kafka_version'].empty?
+
 package "zip"
 
 service_name = node[cookbook_name]['service_name']

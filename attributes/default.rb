@@ -14,26 +14,31 @@ default[cookbook_name]['group'] = 'kafka-pixy'
 
 # gRpc address, default: localhost:19091
 default[cookbook_name]['grpcHost'] = node['ipaddress']
-default[cookbook_name]['grpcPort'] = ''
-default[cookbook_name]['grpcAddr'] = "#{default[cookbook_name]['grpcHost']}:#{default[cookbook_name]['grpcPort']}"
+default[cookbook_name]['grpcPort'] = '19091'
+grpc_port = node[cookbook_name]['grpcPort']
+default[cookbook_name]['grpcAddr'] = "#{default[cookbook_name]['grpcHost']}:#{grpc_port}"
 # tcp address, default: localhost:19092
-default[cookbook_name]['tcpAddr'] = ''
+default[cookbook_name]['tcpHost'] = node['ipaddress']
+default[cookbook_name]['tcpPort'] = '19092'
+tcp_port = node[cookbook_name]['tcpPort']
+default[cookbook_name]['tcpAddr'] = "#{default[cookbook_name]['tcpHost']}:#{tcp_port}"
 
 # Kafka cluster options, default: localhost:9092
-default[cookbook_name]['kafka_hosts'] = []
-default[cookbook_name]['kafka_topic'] = ''
+kafka_hosts = node[cookbook_name]['kafka_hosts']
 # Zookeeper cluster options, default: localhost:2181
 default[cookbook_name]['zookeeper_hosts'] = []
+zookeeper_hosts = node[cookbook_name]['zookeeper_hosts']
 default[cookbook_name]['kafka_version'] = '0.11.0.2'
+kafka_version = default[cookbook_name]['kafka_version']
 
 # config YAML variables
 default[cookbook_name]['prefix_config_yaml'] = '/etc/kafka-pixy'
 default[cookbook_name]['config_yaml_file'] = "#{node[cookbook_name]['prefix_config_yaml']}/default.yaml"
 config_yaml_file = default[cookbook_name]['config_yaml_file']
 default[cookbook_name]['config_vars'] = {
-    'kafka_hosts': default[cookbook_name]['kafka_hosts'],
-    'zookeeper_hosts': default[cookbook_name]['zookeeper_hosts'],
-    'kafka_version': default[cookbook_name]['kafka_version'],
+    'kafka_hosts': kafka_hosts,
+    'zookeeper_hosts': zookeeper_hosts,
+    'kafka_version': kafka_version,
     'consumer_subscription_timeout': '15s'
 }
 
