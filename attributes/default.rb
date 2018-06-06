@@ -14,7 +14,7 @@ default[cookbook_name]['group'] = 'kafka-pixy'
 
 # gRpc address, default: localhost:19091
 default[cookbook_name]['grpcHost'] = node['ipaddress']
-default[cookbook_name]['grpcPost'] = ''
+default[cookbook_name]['grpcPort'] = ''
 default[cookbook_name]['grpcAddr'] = "#{default[cookbook_name]['grpcHost']}:#{default[cookbook_name]['grpcPort']}"
 # tcp address, default: localhost:19092
 default[cookbook_name]['tcpAddr'] = ''
